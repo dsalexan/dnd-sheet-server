@@ -113,15 +113,92 @@ server.get('/classes', (req, res) => {
     })
 })
 
+
+server.get('/:meta', (req, res) => {
+  let meta = req.params.meta
+  let q = req.query.q
+  let max = req.query.max || 1000
+  debug(`FIND RESOURCE ${q} IN META ${meta}`)
+
+  global.database.collection(`slugs`).aggregate([
+    {
+      '$unwind': {
+        'path': '$path'
+      }
+    }, {
+      '$match': {
+        'path': {
+          '$regex': q
+        }
+      }
+    }, {
+      '$group': {
+        '_id': '$_id', 
+        'path': {
+          '$push': '$path'
+        }
+      }
+    }, {
+      '$lookup': {
+        'from': 'resources', 
+        'localField': '_id', 
+        'foreignField': '_id', 
+        'as': 'resource'
+      }
+    }, {
+      '$addFields': {
+        'resource.path': {
+          '$arrayElemAt': [
+            '$path', 1
+          ]
+        }
+      }
+    }, {
+      '$replaceRoot': {
+        'newRoot': {
+          '$mergeObjects': [
+            {
+              '$arrayElemAt': [
+                '$resource', 0
+              ]
+            }, {
+              'path': '$path'
+            }
+          ]
+        }
+      }
+    }, {
+      '$match': {
+        'meta': meta
+      }
+    }
+  ]).toArray((err, docs) => {
+    debug(`META RESOURCE (${meta}) found`)
+    res.send(docs.splice(0, max))
+  })
+})
+
 server.get('/', (req, res) => {
   let q = req.query.q
+  let max = req.query.max || 1000
   debug(`FIND RESOURCE ${q}`)
 
   global.database.collection(`slugs`).aggregate([
     {
+      '$unwind': {
+        'path': '$path'
+      }
+    }, {
       '$match': {
         'path': {
           '$regex': q
+        }
+      }
+    }, {
+      '$group': {
+        '_id': '$_id', 
+        'path': {
+          '$push': '$path'
         }
       }
     }, {
@@ -156,6 +233,6 @@ server.get('/', (req, res) => {
     }
   ]).toArray((err, docs) => {
     debug(`RESOURCE found`)
-    res.send(docs)
+    res.send(docs.splice(0, max))
   })
 })
