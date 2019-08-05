@@ -116,11 +116,13 @@ server.get('/classes', (req, res) => {
 
 server.get('/:meta', (req, res) => {
   let meta = req.params.meta
+
   let q = req.query.q
   let max = req.query.max || 1000
+  let query = req.query.query || undefined
   debug(`FIND RESOURCE ${q} IN META ${meta}`)
 
-  global.database.collection(`slugs`).aggregate([
+  let agg = [
     {
       '$unwind': {
         'path': '$path'
@@ -172,7 +174,17 @@ server.get('/:meta', (req, res) => {
         'meta': meta
       }
     }
-  ]).toArray((err, docs) => {
+  ]
+
+  if(query){
+    console.log(query)
+    agg.push({
+      '$match': JSON.parse(query.replace(/\'+/gm, '\"'))
+    })
+    console.log(agg)
+  }
+
+  global.database.collection(`slugs`).aggregate(agg).toArray((err, docs) => {
     debug(`META RESOURCE (${meta}) found`)
     res.send(docs.splice(0, max))
   })
@@ -181,9 +193,10 @@ server.get('/:meta', (req, res) => {
 server.get('/', (req, res) => {
   let q = req.query.q
   let max = req.query.max || 1000
+  let query = req.query.query
   debug(`FIND RESOURCE ${q}`)
 
-  global.database.collection(`slugs`).aggregate([
+  let agg = [
     {
       '$unwind': {
         'path': '$path'
@@ -231,7 +244,17 @@ server.get('/', (req, res) => {
         }
       }
     }
-  ]).toArray((err, docs) => {
+  ]
+
+  if(query){
+    console.log(query)
+    agg.push({
+      '$match': JSON.parse(query.replace(/\'+/gm, '\"'))
+    })
+    console.log(agg)
+  }
+
+  global.database.collection(`slugs`).aggregate(agg).toArray((err, docs) => {
     debug(`RESOURCE found`)
     res.send(docs.splice(0, max))
   })
