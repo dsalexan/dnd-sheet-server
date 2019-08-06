@@ -79,7 +79,33 @@ server.get('/classes', (req, res) => {
               }, {
                 'name.pt-BR': q
               }
-            ]
+            ],
+            'meta': 'class'
+          }
+        }
+      ]).toArray((err, docs) => {
+        debug('CLASS entry found')
+        res.send(docs)
+    })
+})
+
+server.get('/backgrounds', (req, res) => {
+    let q = req.query.q
+    debug(`BACKGROUND ${q}`)
+
+    global.database.collection('resources').aggregate([
+        {
+          '$match': {
+            '$or': [
+              {
+                'name': q
+              }, {
+                'name.en': q
+              }, {
+                'name.pt-BR': q
+              }
+            ],
+            'meta': 'background'
           }
         }, {
           '$lookup': {
@@ -124,21 +150,53 @@ server.get('/:meta', (req, res) => {
 
   let agg = [
     {
-      '$unwind': {
-        'path': '$path'
+      '$facet': {
+        'slugs': [
+          {
+            '$unwind': {
+              'path': '$path'
+            }
+          }, {
+            '$match': {
+              'path': {
+                '$regex': q
+              }
+            }
+          }
+        ]
       }
     }, {
-      '$match': {
-        'path': {
-          '$regex': q
-        }
+      '$unwind': {
+        'path': '$slugs', 
+        'includeArrayIndex': 'slugs.index'
+      }
+    }, {
+      '$replaceRoot': {
+        'newRoot': '$slugs'
       }
     }, {
       '$group': {
         '_id': '$_id', 
         'path': {
           '$push': '$path'
+        }, 
+        'index': {
+          '$push': '$index'
         }
+      }
+    }, {
+      '$project': {
+        '_id': 1, 
+        'path': 1, 
+        'index': {
+          '$arrayElemAt': [
+            '$index', 0
+          ]
+        }
+      }
+    }, {
+      '$sort': {
+        'index': 1
       }
     }, {
       '$lookup': {
@@ -198,21 +256,53 @@ server.get('/', (req, res) => {
 
   let agg = [
     {
-      '$unwind': {
-        'path': '$path'
+      '$facet': {
+        'slugs': [
+          {
+            '$unwind': {
+              'path': '$path'
+            }
+          }, {
+            '$match': {
+              'path': {
+                '$regex': q
+              }
+            }
+          }
+        ]
       }
     }, {
-      '$match': {
-        'path': {
-          '$regex': q
-        }
+      '$unwind': {
+        'path': '$slugs', 
+        'includeArrayIndex': 'slugs.index'
+      }
+    }, {
+      '$replaceRoot': {
+        'newRoot': '$slugs'
       }
     }, {
       '$group': {
         '_id': '$_id', 
         'path': {
           '$push': '$path'
+        }, 
+        'index': {
+          '$push': '$index'
         }
+      }
+    }, {
+      '$project': {
+        '_id': 1, 
+        'path': 1, 
+        'index': {
+          '$arrayElemAt': [
+            '$index', 0
+          ]
+        }
+      }
+    }, {
+      '$sort': {
+        'index': 1
       }
     }, {
       '$lookup': {
