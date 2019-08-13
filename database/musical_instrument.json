@@ -1,0 +1,20 @@
+[
+    {
+        "_id": "musical_instruments",
+        "meta": "equipment",
+        "parent": "tool",
+        "name": "Musical Instruments",
+        "slug": "music",
+        "text": "<p>Several of the most Common types of Musical Instruments are shown on the table as examples. If you have proficiency with a given musical Instrument, you can add your Proficiency Bonus to any Ability Checks you make to play music with the Instrument. A bard can use a musical Instrument as a Spellcasting focus. Each type of musical Instrument requires a separate proficiency.</p>"
+    },
+    {
+        "_id": "instrument_lyre",
+        "meta": "equipment",
+        "parent": "musical_instruments",
+        "name": "Lyre",
+        "mechanics": {
+            "cost": ["30", "gp"],
+            "weight": ["2", "lb"]
+        }
+    }
+]

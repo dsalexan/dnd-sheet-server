@@ -1,0 +1,16 @@
+[
+    {
+        "_id": "faeform_humanoid",
+        "meta": "feature",
+        "parent": "faeform",
+        "name": "Humanoid Form",
+        "slug": "humanoid"
+    },
+    {
+        "_id": "faeform_fae",
+        "meta": "feature",
+        "parent": "faeform",
+        "name": "Fae Form",
+        "slug": "fae"
+    }
+]

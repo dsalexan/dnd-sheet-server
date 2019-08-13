@@ -1,0 +1,478 @@
+[
+    {
+        "_id": "bard",
+        "meta": "class",
+        "name": {
+            "pt-BR": "Bardo",
+            "en": "Bard"
+        },
+        "subscriptions": [
+            "features",
+            "proficiencies",
+            "spells",
+            "stats"
+        ],
+        "injections": [
+            "equipment"
+        ],
+        "mechanics": {
+            "stats": {
+                "hp": {
+                    "die": "d8"
+                },
+                "hit_dice": {
+                    "die": "1d8"
+                }
+            },
+            "proficiencies": {
+                "armor": [
+                    "@armor/light"
+                ],
+                "weapons": [
+                    "@weapon/simple",
+                    "@weapon/hand_crossbow",
+                    "@weapon/longsword",
+                    "@weapon/rapier",
+                    "@weapon/shortsword"
+                ],
+                "tools": [
+                    {
+                        "meta": "command",
+                        "choose": 3,
+                        "from": "@tool/*"
+                    }
+                ],
+                "saves": [
+                    "@dex",
+                    "@cha"
+                ],
+                "skills": [
+                    {
+                        "meta": "command",
+                        "choose": 3,
+                        "from": "@skill/*"
+                    }
+                ]
+            },
+            "equipment": {
+                "items": [
+                    {
+                        "meta": "command",
+                        "choose": 1,
+                        "from": [
+                            "@weapon/rapier",
+                            "@weapon/longsword",
+                            "@weapon/simple"
+                        ]
+                    },
+                    {
+                        "meta": "command",
+                        "choose": 1,
+                        "from": [
+                            "@pack/diplomat",
+                            "@pack/entertrainer"
+                        ]
+                    },
+                    {
+                        "meta": "command",
+                        "choose": 1,
+                        "from": [
+                            "@musical_instruments/lute",
+                            "@musical_instruments/all"
+                        ]
+                    },
+                    "@armor/leather",
+                    "@weapon/dagger"
+                ]
+            },
+            "table": [
+                {
+                    "features": [
+                        {
+                            "slug": "@bard/spellcasting",
+                            "mechanics": {
+                                "cantrips_known": 2,
+                                "spells_known": 4,
+                                "spell_slots": [
+                                    2
+                                ]
+                            }
+                        },
+                        "@bard/bardic_inspiration"
+                    ]
+                },
+                {
+                    "features": [
+                        "@bard/jack_of_all_trades",
+                        "@bard/song_of_rest",
+                        {
+                            "slug": "@bard/spellcasting",
+                            "mechanics": {
+                                "cantrips_known": 2,
+                                "spells_known": 5,
+                                "spell_slots": [
+                                    3
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "features": [
+                        "@bard/bard_college",
+                        "@bard/expertise",
+                        {
+                            "slug": "@bard/spellcasting",
+                            "mechanics": {
+                                "cantrips_known": 2,
+                                "spells_known": 6,
+                                "spell_slots": [
+                                    4,
+                                    2
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "features": [
+                        "@ability_score_improvement",
+                        {
+                            "slug": "@bard/spellcasting",
+                            "mechanics": {
+                                "cantrips_known": 3,
+                                "spells_known": 7,
+                                "spell_slots": [
+                                    4,
+                                    3
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "features": [
+                        "@bard/font_of_inspiration",
+                        {
+                            "slug": "@bard/spellcasting",
+                            "mechanics": {
+                                "cantrips_known": 3,
+                                "spells_known": 8,
+                                "spell_slots": [
+                                    4,
+                                    3,
+                                    2
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "features": [
+                        "@bard/countercharm",
+                        {
+                            "slug": "@bard/spellcasting",
+                            "mechanics": {
+                                "cantrips_known": 3,
+                                "spells_known": 9,
+                                "spell_slots": [
+                                    4,
+                                    3,
+                                    3
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "features": [
+                        {
+                            "slug": "@bard/spellcasting",
+                            "mechanics": {
+                                "cantrips_known": 3,
+                                "spells_known": 10,
+                                "spell_slots": [
+                                    4,
+                                    3,
+                                    3,
+                                    1
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "features": [
+                        "@ability_score_improvement",
+                        {
+                            "slug": "@bard/spellcasting",
+                            "mechanics": {
+                                "cantrips_known": 3,
+                                "spells_known": 11,
+                                "spell_slots": [
+                                    4,
+                                    3,
+                                    3,
+                                    2
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "features": [
+                        {
+                            "slug": "@bard/spellcasting",
+                            "mechanics": {
+                                "cantrips_known": 3,
+                                "spells_known": 12,
+                                "spell_slots": [
+                                    4,
+                                    3,
+                                    3,
+                                    3,
+                                    1
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "features": [
+                        "@bard/expertise",
+                        "@bard/magical_secrets",
+                        {
+                            "slug": "@bard/spellcasting",
+                            "mechanics": {
+                                "cantrips_known": 4,
+                                "spells_known": 14,
+                                "spell_slots": [
+                                    4,
+                                    3,
+                                    3,
+                                    3,
+                                    2
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "features": [
+                        {
+                            "slug": "@bard/spellcasting",
+                            "mechanics": {
+                                "cantrips_known": 4,
+                                "spells_known": 15,
+                                "spell_slots": [
+                                    4,
+                                    3,
+                                    3,
+                                    3,
+                                    2,
+                                    1
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "features": [
+                        "@ability_score_improvement",
+                        {
+                            "slug": "@bard/spellcasting",
+                            "mechanics": {
+                                "cantrips_known": 4,
+                                "spells_known": 15,
+                                "spell_slots": [
+                                    4,
+                                    3,
+                                    3,
+                                    3,
+                                    2,
+                                    1
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "features": [
+                        {
+                            "slug": "@bard/spellcasting",
+                            "mechanics": {
+                                "cantrips_known": 4,
+                                "spells_known": 16,
+                                "spell_slots": [
+                                    4,
+                                    3,
+                                    3,
+                                    3,
+                                    2,
+                                    1,
+                                    1
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "features": [
+                        "@bard/magical_secrets",
+                        {
+                            "slug": "@bard/spellcasting",
+                            "mechanics": {
+                                "cantrips_known": 4,
+                                "spells_known": 18,
+                                "spell_slots": [
+                                    4,
+                                    3,
+                                    3,
+                                    3,
+                                    2,
+                                    1,
+                                    1
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "features": [
+                        {
+                            "slug": "@bard/spellcasting",
+                            "mechanics": {
+                                "cantrips_known": 4,
+                                "spells_known": 19,
+                                "spell_slots": [
+                                    4,
+                                    3,
+                                    3,
+                                    3,
+                                    2,
+                                    1,
+                                    1,
+                                    1
+                                ] 
+                            }
+                        }
+                    ]
+                },
+                {
+                    "features": [
+                        "@ability_score_improvement",
+                        {
+                            "slug": "@bard/spellcasting",
+                            "mechanics": {
+                                "cantrips_known": 4,
+                                "spells_known": 19,
+                                "spell_slots": [
+                                    4,
+                                    3,
+                                    3,
+                                    3,
+                                    2,
+                                    1,
+                                    1,
+                                    1
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "features": [
+                        {
+                            "slug": "@bard/spellcasting",
+                            "mechanics": {
+                                "cantrips_known": 4,
+                                "spells_known": 20,
+                                "spell_slots": [
+                                    4,
+                                    3,
+                                    3,
+                                    3,
+                                    2,
+                                    1,
+                                    1,
+                                    1,
+                                    1
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "features": [
+                        "@bard/magical_secrets",
+                        {
+                            "slug": "@bard/spellcasting",
+                            "mechanics": {
+                                "cantrips_known": 4,
+                                "spells_known": 22,
+                                "spell_slots": [
+                                    4,
+                                    3,
+                                    3,
+                                    3,
+                                    3,
+                                    1,
+                                    1,
+                                    1,
+                                    1
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "features": [
+                        "@ability_score_improvement",
+                        {
+                            "slug": "@bard/spellcasting",
+                            "mechanics": {
+                                "cantrips_known": 4,
+                                "spells_known": 22,
+                                "spell_slots": [
+                                    4,
+                                    3,
+                                    3,
+                                    3,
+                                    3,
+                                    2,
+                                    1,
+                                    1,
+                                    1
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "features": [
+                        "@bard/superior_inspiration",
+                        {
+                            "slug": "@bard/spellcasting",
+                            "mechanics": {
+                                "cantrips_known": 4,
+                                "spells_known": 22,
+                                "spell_slots": [
+                                    4,
+                                    3,
+                                    3,
+                                    3,
+                                    3,
+                                    2,
+                                    2,
+                                    1,
+                                    1
+                                ]
+                            }
+                        }
+                    ]
+                }
+            ],
+            "spellcasting": "@bard/spellcasting"
+        }
+    }
+]

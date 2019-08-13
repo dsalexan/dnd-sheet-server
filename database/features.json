@@ -1,0 +1,11 @@
+[
+    {
+        "_id": "ability_score_improvement",
+        "meta": "feature",
+        "name": "Ability Score Improvement",
+        "text": "<p>When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two Ability Scores of your choice by 1. As normal, you can’t increase an ability score above 20 using this feature.</p>",
+        "mechanics": {
+            "o que fazer aqui?": "Quando o personagem chegar nos niveis especificos ele deve escolher o ability score improvement. Quando escolher, vai aparecer um novo registro em features (um Ability Score Improvement), no campo mechanics vai falar onde ele colocou qual ponto. Ai entao sempre que executado esse ASI aq vai procurar em features da ficha pra ver se o personagem ja upou pra quele nivel. Se upou, nao mostra a mensagem que upar."
+        }
+    }
+]

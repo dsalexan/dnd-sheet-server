@@ -6,6 +6,9 @@ const body_parser = require('body-parser')
 const cors = require('cors')
 const database = require('./database')
 
+const fs = require('fs')
+const path = require('path')
+
 const server = express()
 
 database.connect().then((db) => {
@@ -107,38 +110,76 @@ server.get('/backgrounds', (req, res) => {
             ],
             'meta': 'background'
           }
-        }, {
-          '$lookup': {
-            'from': 'resources', 
-            'localField': '_id', 
-            'foreignField': 'parent', 
-            'as': 'features'
-          }
-        }, {
-          '$project': {
-            'meta': 1, 
-            'name': 1, 
-            'subscriptions': 1, 
-            'mechanics': 1, 
-            'features': {
-              '$filter': {
-                'input': '$features', 
-                'as': 'resource', 
-                'cond': {
-                  '$eq': [
-                    '$$resource.meta', 'feature'
-                  ]
-                }
-              }
-            }
-          }
         }
       ]).toArray((err, docs) => {
-        debug('CLASS entry found')
+        debug('BACKGROUND entry found')
         res.send(docs)
     })
 })
 
+server.get('/races', (req, res) => {
+  let q = req.query.q
+  debug(`RACE ${q}`)
+
+  global.database.collection('resources').aggregate([
+      {
+        '$match': {
+          '$or': [
+            {
+              'name': q
+            }, {
+              'name.en': q
+            }, {
+              'name.pt-BR': q
+            }
+          ],
+          'meta': 'race'
+        }
+      }
+    ]).toArray((err, docs) => {
+      debug('RACE entry found')
+      res.send(docs)
+  })
+})
+
+server.get('/database', (req, res) => {
+  let insert = !!req.query.insert
+
+  let files = fs.readdirSync('./database')
+  let objs = files.map(f => {
+    if(f == 'readme.md') return []
+    if(f == 'test.json') return []
+    if(f == 'input.json') return []
+
+    let file = fs.readFileSync('./database/' + f, 'utf-8')
+    file = '{"file":' + file + '}'
+    let json
+    try{
+      json = JSON.parse(file)
+    }catch(err){
+      console.error(err)
+      debugger
+    }
+    return json.file
+  })
+
+  objs = objs.reduce((arr, cur) => arr.concat(cur), [])
+  objs.sort((a, b) => a._id.localeCompare(b._id))
+
+  objs = objs.map(o => ({
+    ...o,
+    _modified_at: new Date()
+  }))
+
+  if(insert){
+    global.database.collection('resources').deleteMany({})
+    global.database.collection('resources').insertMany(
+      objs
+    )
+  }
+
+  res.send(objs)
+})
 
 server.get('/:meta', (req, res) => {
   let meta = req.params.meta
@@ -252,6 +293,7 @@ server.get('/', (req, res) => {
   let q = req.query.q
   let max = req.query.max || 1000
   let query = req.query.query
+  let start = req.query.start || false
   debug(`FIND RESOURCE ${q}`)
 
   let agg = [
@@ -265,7 +307,7 @@ server.get('/', (req, res) => {
           }, {
             '$match': {
               'path': {
-                '$regex': q
+                '$regex': (start ? '^' : '') + q
               }
             }
           }

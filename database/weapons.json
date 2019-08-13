@@ -1,0 +1,81 @@
+[
+    {
+        "_id": "weapon",
+        "meta": "equipment",
+        "name": "Weapon",
+        "text": "<p>Your class grants proficiency in certain Weapons, reflecting both the class’s focus and the tools you are most likely to use. Whether you favor a Longsword or a Longbow, your weapon and your ability to wield it effectively can mean the difference between life and death while Adventuring.</p><p>The Weapons table shows the most Common Weapons used in the fantasy gaming worlds, their price and weight, the damage they deal when they hit, and any special properties they possess. Every weapon is classified as either melee or ranged. A melee weapon is used to Attack a target within 5 feet of you, whereas a ranged weapon is used to Attack a target at a distance.</p>"
+    },{
+        "_id": "simple",
+        "meta": "equipment",
+        "parent": "weapon",
+        "name": "Simple Weapons",
+        "slug": "simple",
+        "text": "<p>Generally inexpensive and light in weight, simple weapons get the job done nevertheless.</p>"
+    },{
+        "_id": "martial",
+        "meta": "equipment",
+        "parent": "weapon",
+        "name": "Martial Weapons",
+        "slug": "martial",
+        "text": "<p>TEXTO PARA MARTIAL WEAPONS</p>"
+    },
+    {
+        "_id": "hand_crossbow",
+        "meta": "equipment",
+        "parent": "martial",
+        "name": "Hand Crossbow",
+        "mechanics": {
+            "cost": ["75", "gp"],
+            "damage": ["1d6", "piercing"],
+            "weight": ["3", "lb"],
+            "properties": [
+                "ammunition (range 30/120)", 
+                "light", 
+                "loading"
+            ]
+        }
+    },
+    {
+        "_id": "longsword",
+        "meta": "equipment",
+        "parent": "martial",
+        "name": "Longsword",
+        "mechanics": {
+            "cost": ["15", "gp"],
+            "damage": ["1d8", "slashing"],
+            "weight": ["3", "lb"],
+            "properties": [
+                "versatile (1d10)"
+            ]
+        }
+    },
+    {
+        "_id": "rapier",
+        "meta": "equipment",
+        "parent": "martial",
+        "name": "Rapier",
+        "mechanics": {
+            "cost": ["25", "gp"],
+            "damage": ["1d8", "piercing"],
+            "weight": ["2", "lb"],
+            "properties": [
+                "finesse"
+            ]
+        }
+    },
+    {
+        "_id": "shortsword",
+        "meta": "equipment",
+        "parent": "martial",
+        "name": "Shortsword",
+        "mechanics": {
+            "cost": ["10", "gp"],
+            "damage": ["1d6", "piercing"],
+            "weight": ["2", "lb"],
+            "properties": [
+                "finesse",
+                "light"
+            ]
+        }
+    }
+]

@@ -1,0 +1,73 @@
+[
+    {
+        "_id": "coin",
+        "meta": "treasure",
+        "name": "Coins",
+        "slug": "coin"
+    },
+    {
+        "_id": "pp",
+        "meta": "treasure",
+        "parent": "coin",
+        "name": {
+            "en": "Platinum Piece",
+            "pt-BR": "Peça de Platina"
+        },
+        "slug": "pp",
+        "mechanics": {
+            "base_value": 10
+        }
+    },
+    {
+        "_id": "gp",
+        "meta": "treasure",
+        "parent": "coin",
+        "name": {
+            "en": "Gold Piece",
+            "pt-BR": "Peça de Ouro"
+        },
+        "slug": "gp",
+        "mechanics": {
+            "base_value": 1
+        }
+    },
+    {
+        "_id": "sp",
+        "meta": "treasure",
+        "parent": "coin",
+        "name": {
+            "en": "Silver Piece",
+            "pt-BR": "Peça de Prata"
+        },
+        "slug": "sp",
+        "mechanics": {
+            "base_value": 0.1
+        }
+    },
+    {
+        "_id": "ep",
+        "meta": "treasure",
+        "parent": "coin",
+        "name": {
+            "en": "Electrum Piece",
+            "pt-BR": "Peça de Electrum"
+        },
+        "slug": "ep",
+        "mechanics": {
+            "base_value": 0.01
+        }
+    },
+    {
+        "_id": "cp",
+        "meta": "treasure",
+        "parent": "coin",
+        "name": {
+            "en": "Copper Piece",
+            "pt-BR": "Peça de Cobre"
+        },
+        "slug": "cp",
+        "mechanics": {
+            "base_value": 0.001
+        }
+    }
+]

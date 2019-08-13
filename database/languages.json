@@ -1,0 +1,20 @@
+[
+    {
+        "_id": "language",
+        "meta": "world",
+        "name": "Languages",
+        "slug": "language"
+    },
+    {
+        "_id": "language_common",
+        "meta": "world",
+        "parent": "language",
+        "name": "Common"
+    },
+    {
+        "_id": "language_sylvan",
+        "meta": "world",
+        "parent": "language",
+        "name": "Sylvan"
+    }
+]

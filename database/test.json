@@ -1,0 +1,101 @@
+[
+    {
+        "_id": "bard2",
+        "meta": "class",
+        "name": {
+            "pt-BR": "Bardo2",
+            "en": "Bard2"
+        },
+        "slug": "classe",
+        "subscriptions": [
+            "features",
+            "proficiencies",
+            "spells"
+        ],
+        "injections": [
+            "equipment"
+        ],
+        "mechanics": {
+            "hit_dice": "1d8",
+            "proficiencies": {
+                "armor": [
+                    "@armor/light"
+                ],
+                "weapons": [
+                    "@weapon/simple",
+                    "@weapon/hand_crossbow",
+                    "@weapon/longsword",
+                    "@weapon/rapier",
+                    "@weapon/shortsword"
+                ],
+                "tools": [
+                    {
+                        "meta": "command",
+                        "choose": 3,
+                        "from": "@tool/*"
+                    }
+                ],
+                "saves": [
+                    "@dex",
+                    "@cha"
+                ],
+                "skills": [
+                    {
+                        "meta": "command",
+                        "choose": 3,
+                        "from": "@skill/*"
+                    }
+                ]
+            },
+            "equipment": {
+                "items": [
+                    "@pack/test"
+                ]
+            },
+            "table": [
+                {
+                    "features": [
+                        {
+                            "slug": "@bard/spellcasting",
+                            "mechanics": {
+                                "cantrips_known": 2,
+                                "spells_known": 4,
+                                "spell_slots": [
+                                    2
+                                ]
+                            }
+                        },
+                        "@bard/bardic_inspiration"
+                    ]
+                }
+            ],
+            "spellcasting": "@bard/spellcasting"
+        }
+    },
+    {
+        "_id": "entertainers_pack2",
+        "meta": "equipment",
+        "name": "Entertainer's Pack2",
+        "slug": "test",
+        "parent": "equipment_pack",
+        "text": "<p>Includes a Backpack, a Bedroll, 2 costumes, 5 candles, 5 days of Rations, a Waterskin, and a Disguise Kit.</p>",
+        "injections": [
+            "equipment"
+        ],
+        "mechanics": {
+            "equipment":  {
+                "items": [
+                    "@adventuring/costume",
+                    "@adventuring/costume",
+                    {
+                        "slug": "@adventuring/candle",
+                        "mechanics": {
+                            "quantity": 5
+                        }
+                    }
+                ]
+            },
+            "cost": ["40", "gp"]
+        }
+    }
+]

@@ -1,0 +1,138 @@
+[
+    {
+        "_id": "equipment_pack",
+        "meta": "equipment",
+        "name": "Equipment Packs",
+        "parent": "adventuring_gear",
+        "slug": "pack",
+        "text": "<p>The Starting Equipment you get from your class includes a collection of useful Adventuring gear, put together in a pack. The contents of these packs are listed here. If you are buying your Starting Equipment, you can purchase a pack for the price shown, which might be cheaper than buying the items individually.</p>"
+    },
+    {
+        "_id": "entertainers_pack",
+        "meta": "equipment",
+        "name": "Entertainer's Pack",
+        "slug": "entertainers",
+        "parent": "equipment_pack",
+        "text": "<p>Includes a Backpack, a Bedroll, 2 costumes, 5 candles, 5 days of Rations, a Waterskin, and a Disguise Kit.</p>",
+        "injections": [
+            "equipment"
+        ],
+        "mechanics": {
+            "equipment":  {
+                "items": [
+                    "@adventuring/backpack",
+                    "@adventuring/bedroll",
+                    "@adventuring/costume",
+                    "@adventuring/costume",
+                    {
+                        "slug": "@adventuring/candle",
+                        "mechanics": {
+                            "quantity": 5
+                        }
+                    },
+                    {
+                        "slug": "@adventuring/ration",
+                        "mechanics": {
+                            "quantity": 5
+                        }
+                    },
+                    "@adventuring/waterskin",
+                    "@adventuring/disguise_kit"
+                ]
+            },
+            "cost": ["40", "gp"]
+        }
+    },
+    {
+        "_id": "backpack",
+        "meta": "equipment",
+        "name": "Backpack",
+        "parent": "adventuring_gear",
+        "text": "<p>A backpack can hold one cubic foot or 30 pounds of gear. You can also strap items, such as a Bedroll or a coil of rope, to the outside of a backpack.</p>",
+        "mechanics": {
+            "weight": ["5", "lb"],
+            "cost": ["2", "gp"],
+            "capacity": [
+                {
+                    "_or": [ ["1", "ft³"], ["30", "lbs"] ]
+                }
+            ]
+        }
+    },
+    {
+        "_id": "bedroll",
+        "meta": "equipment",
+        "name": "Bedroll",
+        "parent": "adventuring_gear",
+        "text": "<p>You never know where you’re going to sleep, and a bedroll helps you get better sleep in a hayloft or on the cold ground. A bedroll consists of bedding and a blanket thin enough to be rolled up and tied. In an emergency, it can double as a stretcher.</p>",
+        "mechanics": {
+            "weight": ["7", "lb"],
+            "cost": ["1", "gp"]
+        }
+    },
+    {
+        "_id": "clothing",
+        "meta": "equipment",
+        "name": "Clothes",
+        "slug": "clothing",
+        "parent": "adventuring_gear"
+    },
+    {
+        "_id": "clothes_costume",
+        "meta": "equipment",
+        "name": "Costume",
+        "parent": "clothing",
+        "mechanics": {
+            "weight": ["4", "lb"],
+            "cost": ["5", "gp"]
+        }
+    },
+    {
+        "_id": "candle",
+        "meta": "equipment",
+        "name": "Candle",
+        "parent": "adventuring_gear",
+        "text": "<p>For 1 hour, a candle sheds bright light in a 5-foot radius and dim light for an additional 5 feet.</p>",
+        "mechanics": {
+            "cost": ["1", "cp"],
+            "duration": ["1", "hour"],
+            "effect": [
+                {
+                    "action": "light",
+                    "value": "bright light",
+                    "aoe": "sphere",
+                    "range": ["5", "ft"]
+                },
+                {
+                    "action": "light",
+                    "value": "dim light",
+                    "aoe": "sphere",
+                    "range": ["10", "ft"]
+                }
+            ]
+        }
+    },
+    {
+        "_id": "ration",
+        "meta": "equipment",
+        "name": "Ration",
+        "parent": "adventuring_gear",
+        "text": "<p>Rations consist of dry foods suitable for extended travel, including jerky, dried fruit, hardtack, and nuts.</p>",
+        "mechanics": {
+            "weight": ["2", "lb"],
+            "cost": ["5", "sp"]
+        }
+    },
+    {
+        "_id": "waterskin",
+        "meta": "equipment",
+        "name": "Waterskin",
+        "parent": "adventuring_gear",
+        "text": "<p>A waterskin can hold up to 4 pints of liquid.</p>",
+        "mechanics": {
+            "weight": ["2", "lb"],
+            "cost": ["2", "sp"],
+            "capacity": ["4", "pt"]
+        }
+    }
+]

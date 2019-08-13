@@ -1,0 +1,61 @@
+[
+    {
+        "_id": "entertainer",
+        "meta": "background",
+        "name": "Entertainer",
+        "subscriptions": [
+            "features",
+            "proficiencies"
+        ],
+        "injections": [
+            "equipment"
+        ],
+        "mechanics": {
+            "proficiencies": {
+                "skills": [
+                    "@acrobatics",
+                    "@performance"
+                ],
+                "tools": [
+                    "@tool/disguise_kit",
+                    {
+                        "meta": "command",
+                        "choose": 1,
+                        "from": "@tool/music/*"
+                    }
+                ]
+            },
+            "equipment": {
+                "items": [
+                    {
+                        "meta": "command",
+                        "choose": 1,
+                        "from": "@tool/music/*"
+                    },
+                    "Favor of an Admirer",
+                    "@adventuring/costume",
+                    "@adventuring/costume",
+                    "@adventuring/belt_pouch"
+                ],
+                "treasure": [
+                    {
+                        "slug": "@gp",
+                        "mechanics": {
+                            "value": 15
+                        }
+                    }
+                ]
+            },
+            "features": [
+                "@entertainer/by_popular_demand"
+            ]
+        }
+    },
+    {
+        "_id": "by_popular_demand",
+        "meta": "feature",
+        "parent": "entertainer",
+        "name": "By Popular Demand",
+        "text": "<p>You can always find a place to perform, usually in an inn or tavern but possibly with a circus, at a theater, or even in a noble’s court. At such a place, you receive free lodging and food of a modest or comfortable standard (depending on the quality of the establishment), as long as you perform each night. In addition, your performance makes you something of a local figure. When strangers recognize you in a town where you have performed, they typically take a liking to you.</p>"
+    }
+]
